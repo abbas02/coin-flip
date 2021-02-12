@@ -1,0 +1,60 @@
+import turtle
+import random
+import time
+
+wn = turtle.Screen()
+wn.setup(600, 600)
+wn.title("Coin Flip By: Ahmed")
+wn.bgcolor("light blue")
+wn.addshape("head.gif")
+wn.addshape("tail.gif")
+wn.addshape("Coin1.gif")
+wn.addshape("Coin2.gif")
+wn.addshape("Coin3.gif")
+wn.addshape("Coin4.gif")
+
+pen = turtle.Turtle()
+pen.speed(0)
+pen.shape("Coin1.gif")
+
+head = turtle.Turtle()
+head.speed(0)
+head.hideturtle()
+head.write('Press "Space" to Flip', align="center", font=("courier", 24, "normal"))
+head.shape("head.gif")
+
+tail = turtle.Turtle()
+tail.speed(0)
+tail.hideturtle()
+tail.shape("tail.gif")
+tail.up()
+tail.fd(70)
+
+def flipping():
+    for i in range(2):
+        pen.shape("Coin2.gif")
+        time.sleep(0.05)
+        pen.shape("Coin3.gif")
+        time.sleep(0.05)
+        pen.shape("Coin4.gif")
+        time.sleep(0.05)
+        pen.shape("Coin1.gif")
+        time.sleep(0.05)
+    
+def flip():
+    wn.onkeyrelease(None, "space")
+    head.clear()
+    head.hideturtle()
+    tail.hideturtle()
+    x = random.randint(0, 1)
+    flipping()
+    if x == 0:
+        head.showturtle()
+    else:
+        tail.showturtle()
+    wn.onkeyrelease(flip, "space")
+
+wn.listen()
+wn.onkeyrelease(flip, "space")
+
+wn.mainloop()
